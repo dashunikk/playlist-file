@@ -57,4 +57,8 @@ def get_random_song(playlist, n):
     random.shuffle(merge_playlist)
     return merge_playlist[:n]
 
+# штука которая заберет время из песен (работает и с : и с ;)
+def extract_duration(song):
+    return float(song.split(';')[1].strip()) if ';' in song else float(song.split(':')[1].strip())
+
 print(get_random_song(playlist_c, 5))
