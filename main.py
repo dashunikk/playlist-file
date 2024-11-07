@@ -18,6 +18,8 @@
 # Но результат задачи можно получить вызвав одну функцию!
 # get_duration(playlist: Iterable, n: int) -> Any
 
+import random
+
 playlist_c = (
 	"Happy Nation; 3.32",
 	"It's My Life; 3.59",
@@ -44,3 +46,15 @@ playlist_b = {
 	'Улетаю': 3.24,
 	'Опять метель': 3.37,
 	}
+
+#  Даёт рандомные песни из двух плейлистов (теперь может работать и с кортежами, и со словарями)
+def get_random_song(playlist, n):
+    if isinstance(playlist, dict):
+        merge_playlist = list(playlist.items())
+    else:
+        merge_playlist = list(playlist)
+    
+    random.shuffle(merge_playlist)
+    return merge_playlist[:n]
+
+print(get_random_song(playlist_c, 5))
