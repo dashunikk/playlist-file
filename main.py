@@ -19,6 +19,8 @@
 # get_duration(playlist: Iterable, n: int) -> Any
 
 import random
+from datetime import timedelta
+from typing import Iterable, Any
 
 playlist_c = (
 	"Happy Nation; 3.32",
@@ -47,7 +49,7 @@ playlist_b = {
 	'Опять метель': 3.37,
 	}
 
-#  Даёт рандомные песни из двух плейлистов (теперь может работать и с кортежами, и со словарями)
+# даёт рандомные песни из двух плейлистов (теперь может работать и с кортежами, и со словарями)
 def get_random_song(playlist, n):
     if isinstance(playlist, dict):
         merge_playlist = list(playlist.items())
@@ -55,10 +57,7 @@ def get_random_song(playlist, n):
         merge_playlist = list(playlist)
     
     random.shuffle(merge_playlist)
-    return merge_playlist[:n]
-
-# штука которая заберет время из песен (работает и с : и с ;)
+	
+# штука, которая заберет время из песен (работает и с : и с ;)
 def extract_duration(song):
     return float(song.split(';')[1].strip()) if ';' in song else float(song.split(':')[1].strip())
-
-print(get_random_song(playlist_c, 5))
