@@ -57,7 +57,17 @@ def get_random_song(playlist, n):
         merge_playlist = list(playlist)
     
     random.shuffle(merge_playlist)
-	
-# штука, которая заберет время из песен (работает и с : и с ;)
+    selected_songs = merge_playlist[:n]
+    total_duration = sum(extract_duration(song) for song in selected_songs)
+
+    return selected_songs, total_duration
+
+# штука, которая заберет время из песен
 def extract_duration(song):
-    return float(song.split(';')[1].strip()) if ';' in song else float(song.split(':')[1].strip())
+    return float(song.split(';')[1].strip()) if ';' in song else float(song[1])
+
+# Случайная песня и общая продолжительность
+songs, total = get_random_song(playlist_c, 3)
+
+print("Песни:", songs)
+print("Общая продолжительность:", total)
