@@ -50,24 +50,18 @@ playlist_b = {
 	}
 
 # даёт рандомные песни из двух плейлистов (теперь может работать и с кортежами, и со словарями)
-def get_random_song(playlist, n):
+def get_random_songs(playlist: Iterable, n: int) -> list:
     if isinstance(playlist, dict):
-        merge_playlist = list(playlist.items())
+        songs = list(playlist.items())
     else:
-        merge_playlist = list(playlist)
-    
-    random.shuffle(merge_playlist)
-    selected_songs = merge_playlist[:n]
-    total_duration = sum(extract_duration(song) for song in selected_songs)
+        songs = list(playlist)
 
-    return selected_songs, total_duration
+    random.shuffle(songs)
+    return songs[:n]
 
-# штука, которая заберет время из песен
-def extract_duration(song):
-    return float(song.split(';')[1].strip()) if ';' in song else float(song[1])
-
-# Случайная песня и общая продолжительность
-songs, total = get_random_song(playlist_c, 3)
-
-print("Песни:", songs)
-print("Общая продолжительность:", total)
+# штука, которая заберет время из песен (работает и с : и с ;)
+def extract_duration(song: Any) -> float:
+    if isinstance(song, tuple):
+        duration_str = song[1]
+    elif isinstance(song, str):
+        duration_str = song.split(';')[-1].strip()
