@@ -81,3 +81,5 @@ def get_duration(playlist: Iterable, n: int) -> Any:
     selected_songs = get_random_songs(playlist, n)
     total_duration = sum(extract_duration(song) for song in selected_songs)
     return timedelta(seconds=total_duration)
+total_time_c = get_duration(playlist_c, 1)
+total_time_b = get_duration(playlist_b, 1)
