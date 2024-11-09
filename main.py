@@ -54,25 +54,6 @@ def get_random_songs(playlist: Iterable, n: int) -> list:
     if isinstance(playlist, dict):
         songs = list(playlist.items())
     else:
-<<<<<<< HEAD
-        merge_playlist = list(playlist)
-    
-    random.shuffle(merge_playlist)
-    selected_songs = merge_playlist[:n]
-    total_duration = sum(extract_duration(song) for song in selected_songs)
-
-    return selected_songs, total_duration
-
-# штука, которая заберет время из песен
-def extract_duration(song):
-    return float(song.split(';')[1].strip()) if ';' in song else float(song[1])
-
-# Случайная песня и общая продолжительность
-songs, total = get_random_song(playlist_c, 3)
-
-print("Песни:", songs)
-print("Общая продолжительность:", total)
-=======
         songs = list(playlist)
 
     random.shuffle(songs)
@@ -84,4 +65,9 @@ def extract_duration(song: Any) -> float:
         duration_str = song[1]
     elif isinstance(song, str):
         duration_str = song.split(';')[-1].strip()
->>>>>>> 2e5b0e01d04085f475ac897ef80ce431b994c91e
+
+# Проверка (float или int)
+    if isinstance(duration_str, (float, int)):
+        minutes = int(duration_str)
+        seconds = (duration_str - minutes) * 100
+        return minutes * 60 + int(seconds)
