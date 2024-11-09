@@ -71,3 +71,8 @@ def extract_duration(song: Any) -> float:
         minutes = int(duration_str)
         seconds = (duration_str - minutes) * 100
         return minutes * 60 + int(seconds)
+# Если значение в формате строки (например, "3.32")
+    minute_str, second_str = duration_str.split('.')
+    minutes = int(minute_str)
+    seconds = int(second_str)
+    return minutes * 60 + seconds
