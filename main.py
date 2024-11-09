@@ -83,3 +83,5 @@ def get_duration(playlist: Iterable, n: int) -> Any:
     return timedelta(seconds=total_duration)
 total_time_c = get_duration(playlist_c, 1)
 total_time_b = get_duration(playlist_b, 1)
+print("Общее время звучания (playlist_c):", total_time_c)
+print("Общее время звучания (playlist_b):", total_time_b)
