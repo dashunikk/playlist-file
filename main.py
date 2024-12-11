@@ -99,10 +99,10 @@ def get_total_duration(playlist: Iterable, n: int) -> Any:
     selected_songs = random.sample(playlist, n)
     
     # Преобразуем длительности песен в секунды и суммируем
-    total_duration_seconds = sam(
+    total_duration_seconds = sum(
         int(duration.split('.')[0]) * 60 + int(duration.split('.')[1])
         for duration in selected_songs
     )
     
     # Возвращаем результат в формате timedelta
-    return timedelta(seconds=total_duration_second)
+    return timedelta(seconds=total_duration_seconds)
