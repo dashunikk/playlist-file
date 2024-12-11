@@ -106,3 +106,11 @@ def get_total_duration(playlist: Iterable, n: int) -> Any:
     
     # Возвращаем результат в формате timedelta
     return timedelta(seconds=total_duration_seconds)
+
+def print_total_duration(playlist_name, playlist):
+    total_time = get_duration(playlist, 1)
+    print(f"Общее время звучания ({playlist_name}): {total_time}")
+
+# Вычисляем и выводим общее время звучания для каждого плейлиста
+print_total_duration("playlist_c", playlist_c)
+print_total_duration("playlist_b", playlist_b)
