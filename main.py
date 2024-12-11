@@ -85,3 +85,24 @@ total_time_c = get_duration(playlist_c, 1)
 total_time_b = get_duration(playlist_b, 1)
 print("Общее время звучания (playlist_c):", total_time_c)
 print("Общее время звучания (playlist_b):", total_time_b)
+
+from typing import Iterable, Any
+from datetime import timedelta
+import random
+
+def get_total_duration(playlist: Iterable, n: int) -> Any:
+    """
+    Выбирает n случайных песен из плейлиста,
+    вычисляет их общую длительность и возвращает в формате timedelta.
+    """
+    # Выбираем n случайных песен
+    selected_songs = random.sample(playlist, n)
+    
+    # Преобразуем длительности песен в секунды и суммируем
+    total_duration_seconds = sam(
+        int(duration.split('.')[0]) * 60 + int(duration.split('.')[1])
+        for duration in selected_songs
+    )
+    
+    # Возвращаем результат в формате timedelta
+    return timedelta(seconds=total_duration_second)
