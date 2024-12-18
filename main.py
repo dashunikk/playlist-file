@@ -71,25 +71,7 @@ def extract_duration(song: Any) -> float:
         minutes = int(duration_str)
         seconds = (duration_str - minutes) * 100
         return minutes * 60 + int(seconds)
-# Если значение в формате строки (например, "3.32")
-    minute_str, second_str = duration_str.split('.')
-    minutes = int(minute_str)
-    seconds = int(second_str)
-    return minutes * 60 + seconds
-# Преобразуем общую длительность из секунд в timedelta
-def get_duration(playlist: Iterable, n: int) -> Any:
-    selected_songs = get_random_songs(playlist, n)
-    total_duration = sum(extract_duration(song) for song in selected_songs)
-    return timedelta(seconds=total_duration)
-total_time_c = get_duration(playlist_c, 1)
-total_time_b = get_duration(playlist_b, 1)
-print("Общее время звучания (playlist_c):", total_time_c)
-print("Общее время звучания (playlist_b):", total_time_b)
-
-from typing import Iterable, Any
-from datetime import timedelta
-import random
-
+    
 def get_total_duration(playlist: Iterable, n: int) -> Any:
     """
     Выбирает n случайных песен из плейлиста,
